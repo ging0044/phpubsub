@@ -22,6 +22,10 @@ SQL
         $statement->execute([":id" => $recent]);
         $data = $statement->fetchAll();
 
+        if (!$data) {
+            continue;
+        }
+
         header("X-Accel-Buffering: no");
         header("Content-Type: application/json");
         header("Cache-Control: no-cache");
