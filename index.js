@@ -48,7 +48,14 @@
   });
 
   $(document).ready(function() {
-    makeRequest();
+    const id = $("li[data-id]").toArray().reduce(function(acc, i) {
+      const currentId = parseInt(i.getAttribute("data-id"));
+      if (currentId > acc) {
+        acc = currentId;
+      }
+      return acc;
+    }, 0);
+    makeRequest(id);
   });
 
 })(jQuery);

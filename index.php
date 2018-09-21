@@ -1,3 +1,14 @@
+<?php
+require "connection.php";
+
+$con = Connection\connect();
+
+$sql = <<<SQL
+SELECT * FROM messages;
+SQL;
+
+$messages = $con->query($sql);
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,7 +17,9 @@
   </head>
   <body>
     <ul id="messages">
-
+      <?php foreach ($messages as $message): ?>
+        <li data-id="<?= $message['id'] ?>"><?= $message['text'] ?></li>
+      <?php endforeach ?>
     </ul>
     <form name="message">
       <input type="text" name="text" />
