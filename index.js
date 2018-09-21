@@ -42,7 +42,9 @@
     const text = document.forms.message.text.value;
     document.forms.message.text.value = "";
 
-    sendMessage(text);
+    if (text) {
+      sendMessage(text);
+    }
 
     return false;
   });
